@@ -1,28 +1,33 @@
 # MediMind
 
-An advanced AI medical assistant for enhanced clinical decision-making. 
+An advanced AI medical assistant for enhanced clinical decision-making.
 
 ## Important Note
 
-When opening in StackBlitz, please follow these steps:
-1. Wait for the project to fully load (you'll see "Dependencies installed" in the terminal)
-2. Click the "Connect to Supabase" button in the top right corner
-3. Create a new Supabase project or connect to an existing one
-4. Wait for the preview to load - this may take a few moments
-5. If the preview doesn't load automatically, try refreshing the preview window
+The full project code is available in this repository. If you need the complete project, please clone this repository:
+
+```bash
+git clone https://github.com/DevoteAI/MediMind-main-.git
+cd MediMind-main-
+npm install
+```
 
 ## Getting Started
 
-### In StackBlitz
-1. The project will automatically install dependencies when loaded
-2. Once you see "Dependencies installed" in the terminal, proceed with Supabase connection
-3. If you encounter any issues:
-   - Try refreshing the preview window
-   - Make sure all dependencies are installed
-   - Check that Supabase is properly connected
+1. Make sure you have Node.js installed (v16+)
+2. Clone the repository as shown above
+3. Install dependencies with `npm install`
+4. Create a Supabase project and add your credentials to `.env` file
+5. Run the development server with `npm run dev`
 
+## Environment Variables
 
-[Edit in StackBlitz ⚡️](https://stackblitz.com/~/github.com/LashaKh/MediMind)
+Create a `.env` file with the following variables:
+
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
 ## Features
 
@@ -33,12 +38,31 @@ When opening in StackBlitz, please follow these steps:
 - ABG Analysis with AI interpretation
 - Patient data management
 - Clinical notes system
+- ECG analysis
+- MediVoice transcription
 
-## Environment Variables
+## Technology Stack
 
-The following environment variables are required and will be automatically configured when you connect to Supabase in StackBlitz:
+- React 18 with TypeScript
+- Vite for fast development
+- Tailwind CSS for styling
+- Supabase for backend
+- Zustand for state management
+- TipTap for rich text editing
+- React Router for navigation
 
-```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
+## Project Structure
+
+- `/src/components` - UI components
+- `/src/hooks` - Custom React hooks
+- `/src/lib` - Utility libraries
+- `/src/store` - Zustand state stores
+- `/src/types` - TypeScript type definitions
+- `/src/utils` - Helper functions
+- `/src/contexts` - React contexts
+- `/src/i18n` - Internationalization
+- `/src/pages` - Page components
+
+## License
+
+MIT
