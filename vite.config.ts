@@ -1,47 +1,47 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+    },
+  },
   server: {
-    hmr: {
-      overlay: false
-    }
+    host: true,
+    port: 3000,
   },
   build: {
+    outDir: 'dist',
     minify: 'terser',
     terserOptions: {
-      format: {
-        comments: false
-      },
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug']
-      }
+      },
     },
-    outDir: 'dist',
-    sourcemap: false,
-    target: 'esnext',
-    chunkSizeWarningLimit: 2000,
     rollupOptions: {
       output: {
-        compact: true,
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['lucide-react', 'framer-motion', 'clsx'],
-          supabase: ['@supabase/supabase-js'],
-          markdown: ['react-markdown', 'marked', 'dompurify']
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['@headlessui/react', 'framer-motion'],
+          'data-vendor': ['zustand', '@supabase/supabase-js'],
+          'editor-vendor': [
+            '@tiptap/react',
+            '@tiptap/starter-kit',
+            '@tiptap/extension-link',
+            '@tiptap/extension-image',
+            '@tiptap/extension-color',
+            '@tiptap/extension-highlight',
+            '@tiptap/extension-text-align',
+            '@tiptap/extension-underline',
+            '@tiptap/extension-placeholder',
+          ],
         },
-        assetFileNames: 'assets/[name].[hash].[ext]',
-        chunkFileNames: 'assets/[name].[hash].js',
-        entryFileNames: 'assets/[name].[hash].js'
-      }
-    }
+      },
+    },
   },
-  define: {
-    // Explicitly define environment variables for StackBlitz
-    'process.env.VITE_SUPABASE_URL': JSON.stringify(process.env.VITE_SUPABASE_URL),
-    'process.env.VITE_SUPABASE_ANON_KEY': JSON.stringify(process.env.VITE_SUPABASE_ANON_KEY)
-  }
 });
