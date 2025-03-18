@@ -2,71 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 255 255 255;
-    --foreground: 0 0 0;
-  }
-
-  .dark {
-    --background: 26 27 30;
-    --foreground: 248 249 250;
-  }
-
-  body {
-    @apply bg-white text-gray-900 dark:bg-dark-primary dark:text-white;
-  }
-
-  *:focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2 dark:ring-offset-dark;
-  }
-
-  a {
-    @apply text-primary hover:text-primary/90 dark:text-accent dark:hover:text-accent/90;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply text-gray-900 dark:text-white font-semibold;
-  }
-
-  input, textarea, select {
-    @apply bg-white dark:bg-dark-secondary text-gray-900 dark:text-white 
-           border border-gray-300 dark:border-dark-border
-           focus:border-primary dark:focus:border-accent
-           placeholder:text-gray-500 dark:placeholder:text-dark-muted;
-  }
-
-  button {
-    @apply disabled:opacity-50 disabled:cursor-not-allowed;
-  }
+:root {
+  --font-sans: 'Noto Sans Georgian', 'Inter', 'system-ui', 'sans-serif';
 }
 
-/* Custom Scrollbar */
-.scrollbar-thin {
-  scrollbar-width: thin;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.scrollbar-thin::-webkit-scrollbar {
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
 }
 
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 163, 175, 0.5);
-  border-radius: 3px;
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
 }
 
-.dark .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgba(75, 85, 99, 0.5);
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
 }
 
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(156, 163, 175, 0.7);
+/* Focus styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-950;
 }
 
-.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(75, 85, 99, 0.7);
+/* Card and button hover effects */
+.card-hover {
+  @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg;
+}
+
+.button-hover {
+  @apply transition-all duration-200 hover:scale-105 active:scale-95;
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* For better mobile experience */
+@media (max-width: 640px) {
+  html, body {
+    @apply text-sm;
+  }
 }
